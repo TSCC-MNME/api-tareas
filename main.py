@@ -1,4 +1,3 @@
-  GNU nano 7.2                                                                           main.py                                                                                    
 # main.py
 from fastapi import FastAPI
 from routers.tasks_router import router as tasks_router
@@ -22,5 +21,4 @@ app.include_router(health_router)
 # Prueba de funcionamiento:
 @app.get("/")
 def root():
-    return {"message": "API-tareas funcionando"}
-
+    return {"message": "API de tareas funcionando"}

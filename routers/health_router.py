@@ -14,5 +14,3 @@ def get_health():
         "uptime": time.time() - _start_time,
         "timestamp": datetime.utcnow().isoformat()
     }
-
-

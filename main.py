@@ -1,31 +1,11 @@
+  GNU nano 7.2                                                                           main.py                                                                                    
 # main.py
-
 from fastapi import FastAPI
-from fastapi.openapi.utils import get_openapi
+from routers.tasks_router import router as tasks_router
+from routers.health_router import router as health_router
 from fastapi.middleware.cors import CORSMiddleware
 
-from routers.task_router import router as tasks_router
-from routers.health_router import router as health_router  # asumiendo que ya lo tendrás
-
-
-app = FastAPI(
-    title="API REST Básica de Tareas",
-    version="1.0.0",
-    description=(
-        "API mínima para operaciones CRUD sobre el recurso 'tasks'.\n"
-        "Incluye endpoint de salud y almacenamiento en memoria."
-    ),
-    openapi_tags=[
-        {
-            "name": "Health",
-            "description": "Estado del servicio",
-        },
-        {
-            "name": "Tasks",
-            "description": "Gestión de tareas",
-        },
-    ],
-)
+app = FastAPI(title="API REST  - Tareas")
 
 # Configuración de CORS
 app.add_middleware(
@@ -36,41 +16,11 @@ app.add_middleware(
     allow_headers=["*"],  # Permitir todos los encabezados
 )
 
-# Incluir routers
-app.include_router(health_router)
 app.include_router(tasks_router)
+app.include_router(health_router)
 
-
-# Opcional: endpoint raíz solo informativo
-@app.get("/", tags=["Health"])
-async def root():
-    return {"message": "API REST Básica de Tareas"}
-
-
-# Personalizar el esquema OpenAPI para agregar 'servers'
-def custom_openapi():
-    if app.openapi_schema:
-        return app.openapi_schema
-
-    openapi_schema = get_openapi(
-        title=app.title,
-        version=app.version,
-        description=app.description,
-        routes=app.routes,
-    )
-
-    openapi_schema["servers"] = [
-        {
-            "url": "http://localhost:3000",
-            "description": "Servidor local de desarrollo",
-        }
-    ]
-
-    app.openapi_schema = openapi_schema
-    return openapi_schema
-
-
-app.openapi = custom_openapi
-
-
+# Prueba de funcionamiento:
+@app.get("/")
+def root():
+    return {"message": "API-tareas funcionando"}
 

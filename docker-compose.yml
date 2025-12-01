@@ -5,3 +5,5 @@ services:
     ports:
       - "3026:8000"
     restart: unless-stopped
+    volumes:
+      - .:/app

@@ -4,4 +4,4 @@ services:
     container_name: api-tareas
     ports:
       - "3026:8000"
-    restart: unless-stoppe
+    restart: unless-stopped

@@ -4,5 +4,4 @@ services:
     container_name: api-tareas
     ports:
       - "3026:8000"
-    volumes:
-      - ./app:/app
+    restart: unless-stoppe

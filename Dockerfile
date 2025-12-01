@@ -5,6 +5,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copiamos TODO el proyecto (models, routers, services, main.py, db.py, etc.)
 COPY . .
 
 EXPOSE 8000

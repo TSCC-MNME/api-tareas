@@ -3,7 +3,7 @@ services:
     build: .
     container_name: api-tareas
     ports:
-      - "3026:8000"
+      - "8000:8000"
     restart: unless-stopped
     volumes:
       - .:/app
